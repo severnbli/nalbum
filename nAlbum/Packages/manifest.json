@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.starasgames.tmpro-dynamic-data-cleaner": "https://github.com/STARasGAMES/tmpro-dynamic-data-cleaner.git#upm",
     "com.unity.2d.animation": "14.0.4",
     "com.unity.2d.aseprite": "4.0.2",
     "com.unity.2d.psdimporter": "13.0.3",
