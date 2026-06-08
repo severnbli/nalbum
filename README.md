@@ -5,4 +5,4 @@
 ## Building
 // TODO: add building guide
 ## License
-Licensed with MIT license: [link](https://github.com/Severnbli/nAlbum/blob/main/LICENSE).
+Licensed with GPL-3.0 license: [link](https://github.com/Severnbli/nAlbum/blob/main/LICENSE).
