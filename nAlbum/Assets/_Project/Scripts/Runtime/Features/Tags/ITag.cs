@@ -12,7 +12,11 @@ namespace Severnbli.NAlbum.Runtime.Features.Tags
 {
     public interface ITag
     {
-        HashSet<ITag> Children { get; }
         string GetDescription();
+        HashSet<ITag> GetChildren();
+        HashSet<ITag> GetNestedChildren(HashSet<ITag> buffer = null);
+        bool HasChildren(ITag tag);
+        bool AddChild(ITag tag);
+        bool RemoveChild(ITag tag);
     }
 }
