@@ -138,3 +138,6 @@
 *.gz lfs-file
 *.rar lfs-file
 *.tar lfs-file
+
+# Enterprise architect
+*.eapx lfs-file
