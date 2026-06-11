@@ -7,16 +7,29 @@
 */
 
 using System;
+using Severnbli.NAlbum.Runtime.Core.Allocators.Pools.Collections;
+using Severnbli.NAlbum.Runtime.Core.Domains;
 using Severnbli.NAlbum.Runtime.Features.Tags;
+using Severnbli.NAlbum.Runtime.Shared.Utils;
 
 namespace Severnbli.NAlbum.Runtime.Shared.Extensions
 {
     public static class TagsExtensions
     {
-        public static void DoActionInChildren(this ITag tag, Action<ITag> action, bool nested = false)
+        public static void DoActionInChildren(this ITag tag, Action<ITag> action)
         {
-            var children = nested ? tag.GetNestedChildren() : tag.GetChildren();
-            foreach (var child in children) action(child);
+            TagsUtils.DoActionWithTags(tag.GetChildren(), action);
+        }
+
+        public static void DoActionInNestedChildren(this ITag tag, Action<ITag> action)
+        {
+            var pool = ObjectDomain.GetInstance().Get<HashSetPool<ITag>>();
+            var set = pool.Spawn();
+            
+            tag.GetNestedChildren(set);
+            TagsUtils.DoActionWithTags(tag.GetChildren(), action);
+            
+            pool.Despawn(set);
         }
     }
 }
