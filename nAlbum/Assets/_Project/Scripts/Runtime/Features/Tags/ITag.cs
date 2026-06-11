@@ -16,6 +16,7 @@ namespace Severnbli.NAlbum.Runtime.Features.Tags
         HashSet<ITag> GetChildren();
         HashSet<ITag> GetNestedChildren(HashSet<ITag> buffer = null);
         bool HasChildren(ITag tag);
+        bool HasNestedChildren(ITag tag);
         bool AddChild(ITag tag);
         bool RemoveChild(ITag tag);
     }

@@ -7,6 +7,8 @@
 */
 
 using System.Collections.Generic;
+using Severnbli.NAlbum.Runtime.Core.Allocators.Pools.Collections;
+using Severnbli.NAlbum.Runtime.Core.Domains;
 
 namespace Severnbli.NAlbum.Runtime.Features.Tags
 {
@@ -39,6 +41,18 @@ namespace Severnbli.NAlbum.Runtime.Features.Tags
             return _children.Contains(tag);
         }
 
+        public bool HasNestedChildren(ITag tag)
+        {
+            var pool = ObjectDomain.GetInstance().Get<HashSetPool<ITag>>();
+            var set = pool.Spawn();
+            
+            var nestedChildren = tag.GetNestedChildren(set);
+            var hasChildren = nestedChildren.Contains(tag);
+            
+            pool.Despawn(set);
+            return hasChildren;
+        }
+        
         public bool AddChild(ITag tag)
         {
             return _children.Add(tag);
